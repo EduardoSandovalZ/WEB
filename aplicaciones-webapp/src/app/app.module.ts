@@ -10,8 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
-import { HomeScreenComponent } from './screens/home-screen/home-screen.component'; 
+import {RegistroScreenComponent} from './screens/registro-screen/registro-screen.component';
+import {HomeScreenComponent} from './screens/home-screen/home-screen.component'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { HomeScreenComponent } from './screens/home-screen/home-screen.component
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

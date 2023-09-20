@@ -31,13 +31,26 @@
                 </mat-form-field>
 
                 <mat-form-field class="mat-input" appearance="outline">
-                    <mat-label>Contrasena</mat-label>
-                    <input matInput [(ngModel)]="user.password" placeholder="Escribe contrasena">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [(ngModel)]="user.password" [type]="passwordFieldType" placeholder="Escribe contraseña">
+                    <button mat-button matSuffix (click)="togglePasswordVisibility()">
+                        <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>Confirmar Contraseña</mat-label>
+                    <input matInput [(ngModel)]="user.confirmPassword" [type]="confirmPasswordFieldType" placeholder="Confirma tu contraseña">
+                    <button mat-button matSuffix (click)="toggleConfirmPasswordVisibility()">
+                        <mat-icon>{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
                 </mat-form-field>
 
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Fecha de Nacimiento</mat-label>
-                    <input matInput [(ngModel)]="user.fecha_nacimiento" placeholder="Escribe fecha de nacimiento">
+                    <input matInput [matDatepicker]="datepicker" [(ngModel)]="user.fecha_nacimiento" placeholder="Selecciona una fecha">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="mat-input" appearance="outline">
@@ -64,6 +77,13 @@
                     <mat-label>Ocupacion</mat-label>
                     <input matInput [(ngModel)]="user.ocupacion" placeholder="Escribe ocupacion">
                 </mat-form-field>
+                <div class="d-flex flex-column align-items-center mb-3 mb-0 w-100" style="text-align: center;">
+                    <div class="d-flex justify-content-between w-100">
+                        <button class="btn btn-secondary" type="submit">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Registrar</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

@@ -99,3 +99,52 @@ mat-form-field{
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #000000!important;
 }
+
+
+.btn-primary{
+    width: 208px;
+    height: 48px;
+    background-color: #0092B8!important;
+    border-color: #0092B8!important;
+    border-radius: 8px!important;
+    opacity: 1;
+    //fuente
+    text-align: center;
+    font-family: Nexa-Bold;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.btn-secondary{
+    width: 208px;
+    height: 48px;
+    background-color: #d81b25!important;
+    border-color: #d81b25!important;
+    border-radius: 8px!important;
+    opacity: 1;
+    //fuente
+    text-align: center;
+    font-family: Nexa-Bold;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+  
+  
+.btn-primary:hover{
+    background-color: #017895!important;
+    border-color: #017895;
+}
+
+.btn-secundary:hover{
+    background-color: #d81b25!important;
+    border-color: #d81b25;
+}
+.bi{
+    cursor: pointer;
+}
