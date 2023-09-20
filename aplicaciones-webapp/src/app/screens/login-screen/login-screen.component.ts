@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-screen',
@@ -9,10 +10,17 @@ export class LoginScreenComponent implements OnInit {
   type: string = 'password';
   showPassword: boolean = false; // Variable para controlar la visibilidad de la contraseña
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
+
+  public goRegistro(){
+    this.router.navigate(["registro"]);
+  }
+  
 
   public login() {
     // Aquí puedes agregar la lógica para manejar el inicio de sesión
@@ -24,4 +32,5 @@ export class LoginScreenComponent implements OnInit {
     this.type = this.showPassword ? 'text' : 'password';
   }
 }
+
 
