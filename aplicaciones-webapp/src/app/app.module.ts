@@ -14,14 +14,16 @@ import {RegistroScreenComponent} from './screens/registro-screen/registro-screen
 import {HomeScreenComponent} from './screens/home-screen/home-screen.component'; 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { RegistrarProductoScreenComponent } from './screens/registrar-producto-screen/registrar-producto-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreenComponent,
     RegistroScreenComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    RegistrarProductoScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +34,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatIconModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    
   ],
-  providers: [],
+  providers: [{provide:MAT_DATE_LOCALE,useValue:'es-ES'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
