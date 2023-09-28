@@ -18,11 +18,13 @@ export class LoginScreenComponent implements OnInit {
   }
 
   public goRegistro(){
-    //this.router.navigate(["registro"]);
-    this.router.navigate(["producto"]);
+    this.router.navigate(["registro"]);
+    //this.router.navigate(["producto"]);
   }
   
-
+  public goProducto(){
+    this.router.navigate(["producto"]);
+  }
   public login() {
     // Aquí puedes agregar la lógica para manejar el inicio de sesión
   }
