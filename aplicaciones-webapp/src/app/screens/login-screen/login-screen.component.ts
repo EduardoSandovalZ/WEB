@@ -18,7 +18,8 @@ export class LoginScreenComponent implements OnInit {
   }
 
   public goRegistro(){
-    this.router.navigate(["registro"]);
+    //this.router.navigate(["registro"]);
+    this.router.navigate(["producto"]);
   }
   
 
