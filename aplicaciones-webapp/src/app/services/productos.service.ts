@@ -51,5 +51,7 @@ export class ProductosService {
     }else if(!this.validatorService.numeric(data["precio"])){
       alert("El formato es solo números");
     }
+    return error;
   }
+  
 }
