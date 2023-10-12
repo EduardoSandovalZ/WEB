@@ -6,10 +6,14 @@ describe('HomeScreenComponent', () => {
   let component: HomeScreenComponent;
   let fixture: ComponentFixture<HomeScreenComponent>;
 
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ HomeScreenComponent ]
+    })
+    .compileComponents();
+  });
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HomeScreenComponent]
-    });
     fixture = TestBed.createComponent(HomeScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

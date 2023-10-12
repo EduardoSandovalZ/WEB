@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 //Font face general
 @font-face {
     font-family: 'Nexa-Bold';
@@ -42,6 +40,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Nexa; }
+
 .invalid-feedback {
     display: block!important;
     width: 100%;

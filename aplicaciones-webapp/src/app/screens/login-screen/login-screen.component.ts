@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
+declare var $: any;
 
 @Component({
   selector: 'app-login-screen',
@@ -7,33 +9,58 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-screen.component.scss']
 })
 export class LoginScreenComponent implements OnInit {
-  type: string = 'password';
-  showPassword: boolean = false; // Variable para controlar la visibilidad de la contraseña
+
+  public type: String = "password";
+  public username: String = "";
+  public password: String = "";
+
+  public errors:any = {};
 
   constructor(
-    private router: Router
+    private router: Router,
+    private facadeService: FacadeService
   ) { }
 
   ngOnInit(): void {
   }
 
-  public goRegistro(){
-    this.router.navigate(["registro"]);
-    //this.router.navigate(["producto"]);
-  }
-  
-  public goProducto(){
-    this.router.navigate(["producto"]);
-  }
-  public login() {
-    // Aquí puedes agregar la lógica para manejar el inicio de sesión
-  }
-
-  public togglePasswordVisibility() {
-    // Cambia la visibilidad de la contraseña
-    this.showPassword = !this.showPassword;
-    this.type = this.showPassword ? 'text' : 'password';
-  }
+  public login(): void {
+    // Validar
+    this.errors = this.facadeService.validarLogin(this.username, this.password);
+    
+    if (!$.isEmptyObject(this.errors)) {
+        // Mostrar mensajes de error u otras acciones necesarias
+        return;
+    }
+    
+    // Si pasa la validación, intentar iniciar sesión
+    this.facadeService.login(this.username, this.password).subscribe(
+        (response) => {
+            this.facadeService.saveUserData(response);
+            this.router.navigate(["home"]);
+        },
+        (error) => {
+            alert("No se pudo iniciar sesión");
+        }
+    );
 }
 
 
+  public registrar(){
+
+    this.router.navigate(["registro"]);
+  }
+
+  public showPassword(){
+    if(this.type == "password"){
+      $("#show-password").addClass("show-password");
+      $("#show-password").attr("data-password", true);
+      this.type = "text";
+    }else if(this.type == "text"){
+      $("#show-password").removeClass("show-password");
+      $("#show-password").attr("data-password", false);
+      this.type = "password";
+    }
+
+  }
+}

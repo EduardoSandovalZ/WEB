@@ -6,10 +6,14 @@ describe('LoginScreenComponent', () => {
   let component: LoginScreenComponent;
   let fixture: ComponentFixture<LoginScreenComponent>;
 
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ LoginScreenComponent ]
+    })
+    .compileComponents();
+  });
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginScreenComponent]
-    });
     fixture = TestBed.createComponent(LoginScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

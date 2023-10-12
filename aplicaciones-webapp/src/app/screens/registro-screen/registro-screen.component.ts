@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 declare var $:any;
 
@@ -18,15 +19,28 @@ export class RegistroScreenComponent implements OnInit {
   public inputType_2: string = 'password';
   //Para detectar errores
   public errors:any ={};
+  public datePickerOptions: any;
 
   constructor(
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.user = this.usuariosService.esquemaUser();
     //Imprimir datos en consola
     console.log("User: ", this.user);
+
+
+    // Configurar rango de fechas permitido
+    const currentYear = new Date().getFullYear();
+    const minDate = new Date(1900, 0, 1); // Puedes ajustar el año según tus necesidades
+    const maxDate = new Date(currentYear, 11, 31); // Hasta la fecha actual
+
+    this.datePickerOptions = {
+        min: minDate,
+        max: maxDate,
+    };
   }
 
   public regresar(){
@@ -67,77 +81,73 @@ export class RegistroScreenComponent implements OnInit {
     this.user.fecha_nacimiento = event.value.toISOString().split("T")[0];
     console.log("Fecha: ", this.user.fecha_nacimiento);
   }
+  /* 
+  
+  public registrar(){
+    //Validar
+    this.errors = [];
 
-  public registrar() {
-    // Reiniciar los errores
-    this.errors = {};
-  
-    // Validación de campos obligatorios
-    if (!this.user.matricula) {
-      this.errors.matricula = 'Este campo es obligatorio.';
+    this.errors = this.usuariosService.validarUsuario(this.user);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
     }
-  
-    if (!this.user.first_name) {
-      this.errors.first_name = 'Este campo es obligatorio.';
-    }
-  
-    if (!this.user.last_name) {
-      this.errors.last_name = 'Este campo es obligatorio.';
-    }
-  
-    if (!this.user.email) {
-      this.errors.email = 'Este campo es obligatorio.';
-    }
-  
-    if (!this.user.password && !this.editar) {
-      this.errors.password = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.fecha_nacimiento) {
-      this.errors.fecha_nacimiento = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.curp) {
-      this.errors.curp = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.rfc) {
-      this.errors.rfc = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.edad) {
-      this.errors.edad = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.telefono) {
-      this.errors.telefono = 'Este campo es obligatorio.';
-    }
-    
-    if (!this.user.ocupacion) {
-      this.errors.ocupacion = 'Este campo es obligatorio.';
-    }
-  
-    // Continúa con las validaciones para los demás campos
-  
-    // Si hay errores, no envíes el formulario
-    const tieneErrores = Object.values(this.errors).some(error => !!error);
-    if (tieneErrores) {
-      return;
-    }
-  
-    // Aquí puedes enviar el formulario si no hay errores
-    // ...
-  
-    // Validar la contraseña si es necesario
-    if (this.user.password && this.user.confirmar_password) {
-      if (this.user.password === this.user.confirmar_password) {
-        alert("Vamos a registrar");
-      } else {
-        alert("Las contraseñas no coinciden");
-        this.user.password = "";
-        this.user.confirmar_password = "";
-      }
+    //Validar la contraseña
+    if(this.user.password == this.user.confirmar_password){
+      //Aquí si todo es correcto vamos a registrar - aquí se manda a llamar al servicio
+      this.usuariosService.registrarUsuario(this.user).subscribe(
+        (response)=>{
+          alert("Usuario registrado correctamente");
+          console.log("Usuario registrado: ", response);
+          this.router.navigate(["/"]);
+          return true;
+        }, (error)=>{
+          alert("No se pudo registrar usuario");
+        }
+      )
+    }else{
+      alert("Las contraseñas no coinciden");
+      this.user.password="";
+      this.user.confirmar_password="";
+      return false;
     }
   }
+  
+  
+  
+  */
+
+  public registrar(): Promise<boolean> {
+    return new Promise((resolve) => {
+        // Validar
+        this.errors = [];
+
+        this.errors = this.usuariosService.validarUsuario(this.user);
+        if (!$.isEmptyObject(this.errors)) {
+            resolve(false);
+        }
+        // Validar la contraseña
+        if (this.user.password == this.user.confirmar_password) {
+            // Aquí si todo es correcto vamos a registrar - aquí se manda a llamar al servicio
+            this.usuariosService.registrarUsuario(this.user).subscribe(
+                (response) => {
+                    alert("Usuario registrado correctamente");
+                    console.log("Usuario registrado: ", response);
+                    this.router.navigate(["/"]);
+                    resolve(true);
+                },
+                (error) => {
+                    alert("No se pudo registrar usuario");
+                    resolve(false);
+                }
+            );
+        } else {
+            alert("Las contraseñas no coinciden");
+            this.user.password = "";
+            this.user.confirmar_password = "";
+            resolve(false);
+        }
+    });
+}
+
   
 }

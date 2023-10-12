@@ -1,23 +1,26 @@
 .wrapper{
   width: 100vw;
   height: 100vh;
+  //Flex
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background-color: #FFFFFF;
 }
 
 .section-left{
   width: 50%;
   height: 100%;
+  //Flex
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3rem;
   //Fondo
+  //Fondo de la imagen
   background-image: url("/assets/images/login-bg.png");
+  //background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 2rem;
@@ -27,10 +30,12 @@
 .section-right{
   width: 50%;
   height: 100%;
+  //Flex
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 
 .logo-buap{
@@ -41,6 +46,16 @@
 .logo-fcc{
   width: 500px;
   height: 180px;
+}
+
+.title{
+  font-size: 32px;
+  text-align: center;
+  font-family: Nexa-Bold;
+  letter-spacing: 0px;
+  color: #231F20;
+  text-transform: uppercase;
+  opacity: 1;
 }
 
 .card{
@@ -68,24 +83,15 @@ input{
   opacity: 1;
 }
 
-.pwd{
-  border-right: none!important;
-}
-
 .input-group-text{
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 2px solid #3E3E3E;
   opacity: 1;
   border-left: none!important;
 }
-.title{
-  font-size: 32px;
-  text-align: left;
-  font-family: Nexa-Bold;
-  letter-spacing: 0px;
-  color: #231F20;
-  text-transform: uppercase;
-  opacity: 1;
+
+.pwd{
+  border-right: none!important;
 }
 
 .form-check-label{
@@ -97,6 +103,7 @@ input{
   opacity: 1;
   cursor: pointer;
 }
+
 .btn-primary{
   width: 208px;
   height: 48px;
@@ -104,7 +111,8 @@ input{
   border-color: #0092B8!important;
   border-radius: 8px!important;
   opacity: 1;
-  //fuente
+  //Fuente
+  //Fuente
   text-align: center;
   font-family: Nexa-Bold;
   font-size: 16px;
@@ -114,10 +122,12 @@ input{
   opacity: 1;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: #017895!important;
-  border-color: #017895;
+  border-color: #017895!important;
+  
 }
+
 .bi{
   cursor: pointer;
 }
